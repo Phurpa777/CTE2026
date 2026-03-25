@@ -25,9 +25,6 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
-
-
-# LinkedList Class
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -38,12 +35,13 @@ class LinkedList:
         print("Current size:", self._size)
         print("Head:", self.head)
 
-    # 1. Append: Add element at the end
+    # Append
     def append(self, element):
         new_node = Node(element)
 
         if self.head is None:
-            self.head = self.tail = new_node
+            self.head = new_node
+            self.tail = new_node
         else:
             self.tail.next = new_node
             self.tail = new_node
@@ -51,49 +49,52 @@ class LinkedList:
         self._size += 1
         print(f"Appended {element} to the list")
 
-    # 2. Prepend: Add element at beginning
+    # Prepend
     def prepend(self, element):
         new_node = Node(element)
 
         if self.head is None:
-            self.head = self.tail = new_node
+            self.head = new_node
+            self.tail = new_node
         else:
             new_node.next = self.head
             self.head = new_node
 
         self._size += 1
-        print(f"Prepended {element} to the list")
+        print(f"Prepend {element} to the list")
 
-    # 3. Get element at index
+    # Get
     def get(self, index):
         if index < 0 or index >= self._size:
-            raise IndexError("Index out of range")
+            print("Index out of range")
+            return
 
         current = self.head
-        for _ in range(index):
+        for i in range(index):
             current = current.next
 
         print(f"Element at index {index}: {current.data}")
         return current.data
 
-    # 4. Set element at index
+    # Set
     def set(self, index, element):
         if index < 0 or index >= self._size:
-            raise IndexError("Index out of range")
+            print("Index out of range")
+            return
 
         current = self.head
-        for _ in range(index):
+        for i in range(index):
             current = current.next
 
         current.data = element
         print(f"Set element at index {index} to {element}")
 
-    # 5. Size of list
+    # Size
     def size(self):
         print("Current size:", self._size)
         return self._size
 
-    # Print list (for output display)
+    # Print list
     def print_list(self):
         current = self.head
         elements = []
@@ -105,7 +106,7 @@ class LinkedList:
         print("Print Linked list :[" + " ".join(elements) + "]")
 
 
-# Testing Task 2
+# IMPORTANT: This prevents duplicate execution in VS Code
 if __name__ == "__main__":
     ll = LinkedList()
 
